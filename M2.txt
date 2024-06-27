@@ -1,0 +1,29 @@
+import pandas as pd 
+import numpy as n
+import matplotlib.pyplot as plt
+import seaborn as sns
+d = pd.read_csv('A.csv')
+d.head()
+d.columns
+plt.figure(figsize=(15,5))
+plt.subplot(1,2,1)
+plt.hist(d['Rbcc'],color='red')
+plt.subplot(1,2,2)
+plt.hist(d['Htn'],color='blue')
+d.hist(figsize=(15,55),layout=(15,4), color='red')
+plt.show()
+d['Hemo'].hist(figsize=(10,5),color='red')
+plt.bar(d['Su'],d['Sc'], color='red') # scatter, plot, triplot, stackplot
+plt.boxplot(d['Rbc']) 
+d['Bu'].plot(kind='density')
+sns.displot(d['Class'], color='red') 
+sns.residplot(d['Sc'],d['Sod'], color='red') # residplot, scatterplot 
+sns.pairplot(d)
+fig, ax = plt.subplots(figsize=(20,15))
+sns.heatmap(d.corr(),annot = True, fmt='0.2%',cmap = 'autumn',ax=ax)
+def plot(d, variable):
+    dataframe_pie = d[variable].value_counts()
+    ax = dataframe_pie.plot.pie(figsize=(9,9), autopct='%1.2f%%', fontsize = 10)
+    ax.set_title(variable + ' \n', fontsize = 10)
+    return n.round(dataframe_pie/d.shape[0]*100,2)
+plot(d, 'Class')

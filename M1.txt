@@ -1,0 +1,22 @@
+import pandas as p
+import numpy as n
+import warnings
+warnings.filterwarnings('ignore')
+df=p.read_csv('A.csv')
+df.head()
+df.tail()
+df.shape
+df.size
+df.columns
+df.isnull()
+df['Class'].unique()
+df = df.dropna()
+df.describe()
+df.corr()
+df.info()
+p.crosstab(df["Wbcc"], df["Rbcc"])
+df.groupby(["Hemo","Htn"]).groups
+df["Class"].value_counts()
+p.Categorical(df["Sod"]).describe()
+df.duplicated()
+sum(df.duplicated())
